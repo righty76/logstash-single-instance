@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstash
+  namespace: elasticsearch
+  labels:
+    app.kubernetes.io/name: logstash
+    app.kubernetes.io/instance: logstash
+    app.kubernetes.io/version: "7.10.1"
+spec: 
+  selector:
+    app.kubernetes.io/name: logstash
+    app.kubernetes.io/instance: logstash
+  ports:
+    - name: service
+      port: 5044
+      targetPort: 5044
+      protocol: TCP
+    - name: collectd
+      port: 25826
+      targetPort: 25826
+      protocol: TCP
+  clusterIP: "None"
+  
